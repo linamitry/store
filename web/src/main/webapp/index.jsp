@@ -13,9 +13,6 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<%
-    String path = request.getContextPath();
-%>
 <jsp:include page="nav.jsp" flush="true" />
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -6,27 +6,6 @@ public class User {
     private String password;
     private String role;
 
-//    public User() {
-//
-//    }
-//
-//    public User(String email, String password, String role) {
-//        this.email = email;
-//        this.password = password;
-//        this.role = role;
-//    }
-//
-//    public User(String email, String password) {
-//        this.email = email;
-//        this.password = password;
-//    }
-//
-//    public User(int id, String email, String password, String role) {
-//        this.id = id;
-//        this.email = email;
-//        this.password = password;
-//        this.role = role;
-//    }
     private User(){}
 
     public int getId() {
@@ -69,31 +48,4 @@ public class User {
             return User.this;
         }
     }
-
-
-
-
-
-
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
-
-
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-
-
-
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-
-
-
-//    public void setRole(String role) {
-//        this.role = role;
-//    }
 }

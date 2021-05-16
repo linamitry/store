@@ -13,9 +13,6 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<%
-    String path = request.getContextPath();
-%>
 <jsp:include page="nav.jsp" flush="true"/>
 <div class="container">
     <div class="row">
