@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
@@ -15,31 +15,7 @@
 <%
     String path = request.getContextPath();
 %>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="<%=path+"/posts.jsp"%>">Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<%=path+"/admin"%>">Admin</a>
-                </li>
-            </ul>
-
-            <form class="d-flex" method="post">
-                <button class="btn btn-outline-success"
-                        type="submit"
-                        formaction="logout"
-                >Sign out
-                </button>
-            </form>
-        </div>
-    </div>
-</nav>
+<jsp:include page="nav.jsp" flush="true"/>
 <div class="container">
     <h1>profile.jsp</h1>
     <%

@@ -13,21 +13,10 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="<%=request.getContextPath()%>">Users <%=request.getContextPath()%>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
+//todo nav in header??
 <br>
 
 <div class="row">
-
     <div class="container">
         <h3 class="text-center">List of Users</h3>
         <hr>

@@ -1,26 +1,21 @@
 package org.example.store.servlets;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String path = request.getContextPath();
         response.setContentType("text/html");
-
-        HttpSession session = request.getSession(false);
-        System.out.println("User=" + session.getAttribute("userEmail"));
-        session.invalidate();
+        request.getSession(false).invalidate();
         response.sendRedirect(path + "/login");
     }
 }

@@ -1,13 +1,13 @@
 package org.example.store.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/AuthFilter")
+@WebFilter(filterName = "AuthFilter")
 public class AuthFilter implements Filter {
 
     public void init(FilterConfig fConfig) throws ServletException {
@@ -19,13 +19,14 @@ public class AuthFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
         String loginURI = req.getContextPath() + "/login";
-
-        String uri = req.getRequestURI();
+        String registerURI = req.getContextPath() + "/register";
 
         boolean loggedIn = session != null && session.getAttribute("userEmail") != null;
+        request.setAttribute("loggedIn", loggedIn);
         boolean loginRequest = req.getRequestURI().equals(loginURI);
+        boolean registerRequest = req.getRequestURI().equals(registerURI);
 
-        if (loggedIn || loginRequest) {
+        if (loggedIn || loginRequest || registerRequest) {
             chain.doFilter(request, response);
         } else {
             res.sendRedirect(loginURI);

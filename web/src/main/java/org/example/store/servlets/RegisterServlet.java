@@ -1,6 +1,7 @@
 package org.example.store.servlets;
 
 import org.example.store.dao.UserDAO;
+import org.example.store.model.User;
 import org.example.store.utils.Messages;
 import org.example.store.utils.ServletUtils;
 
@@ -12,14 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private UserDAO userDAO;
 
     public void init() {
         userDAO = new UserDAO();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     @Override
@@ -32,22 +38,15 @@ public class LoginServlet extends HttpServlet {
             messages.put("email", Messages.EMAIL_INVALID);
         }
 
-        if (!messages.isEmpty()) {
-            ServletUtils.showMessage(request, response, messages);
+        if (messages.isEmpty() && !userDAO.findByEmail(email).isPresent()) {
+            User newUser = User.newBuilder()
+                    .setEmail(email)
+                    .setPassword(password)
+                    .build();
+            userDAO.create(newUser);
+            ServletUtils.createSession(request, response, newUser);
             return;
         }
-        userDAO.findByEmailAndPassword(email, password)
-                .ifPresentOrElse((user) -> ServletUtils.createSession(request, response, user),
-                        () -> {
-                            messages.put("login", Messages.USER_NOT_FOUND);
-                            ServletUtils.showMessage(request, response, messages);
-                        });
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        ServletUtils.showMessage(request, response, messages);
     }
 }
-
-

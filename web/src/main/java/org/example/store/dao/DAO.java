@@ -1,14 +1,14 @@
 package org.example.store.dao;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface DAO<Entity, Key,S> {
+public interface DAO<Entity, Key> {
 
     List<Entity> readAll();
     void create(Entity model);
-    Entity readById(Key key);
     boolean delete(Key key);
     boolean update(Entity entity);
-    Entity find(S e, S p);
+    Optional<Entity> findById(Key key);
 }
 
