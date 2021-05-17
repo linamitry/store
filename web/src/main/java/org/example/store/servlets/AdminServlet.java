@@ -3,6 +3,8 @@ package org.example.store.servlets;
 import org.apache.log4j.Logger;
 import org.example.store.dao.UserDAO;
 import org.example.store.model.User;
+import org.example.store.utils.Messages;
+import org.example.store.utils.ServletUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 //todo log
 @WebServlet("/admin")
@@ -55,6 +58,10 @@ public class AdminServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        Map<String, String> messages = ServletUtils.validateEmailAndPassword(email, password);
+        if(!ServletUtils.emailValidator(email)){
+            messages.put("email", Messages.EMAIL_INVALID);
+        }
         User newUser = User.newBuilder()
                 .setEmail(email)
                 .setPassword(password)

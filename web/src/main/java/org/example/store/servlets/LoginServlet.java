@@ -28,10 +28,6 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         Map<String, String> messages = ServletUtils.validateEmailAndPassword(email, password);
 
-        if(!ServletUtils.emailValidator(email)){
-            messages.put("email", Messages.EMAIL_INVALID);
-        }
-
         if (!messages.isEmpty()) {
             ServletUtils.showMessage(request, response, messages);
             return;

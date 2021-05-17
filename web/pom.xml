@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <name>web Maven Webapp</name>
+  <name>store</name>
   <url>http://www.example.com</url>
 
   <properties>
